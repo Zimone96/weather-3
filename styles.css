@@ -6,8 +6,8 @@
         width: 100%;
         margin: 0;
     }
-    .collumn {
-        width: auto;
+    .uk-column {
+        width: 20px;
     }
 }
 #todays-weather {
