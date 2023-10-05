@@ -1,6 +1,6 @@
 @media (max-width: 750px) {
-    .container {
-        width: 100%;
+    #todays-weather {
+        width: auto;
         margin: 0;
     }
 }
