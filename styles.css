@@ -1,6 +1,6 @@
 @media (max-width: 750px) {
-    .weatherApp {
-        width: auto;
+    #container {
+        width:fit-content;
         margin: 0;
     }
 }
