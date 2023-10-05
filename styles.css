@@ -1,15 +1,12 @@
-
-
-
-@media (max-width: 480px) {
+@media (max-width: 720px) {
     .container {
         width: 100%;
         margin: 0;
     }
-    .uk-column {
-        width: 20px;
-    }
 }
+
+
+
 #todays-weather {
     border-radius: 20px;
     box-shadow: 0 0 10px #cde745;
