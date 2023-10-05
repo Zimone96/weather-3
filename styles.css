@@ -6,6 +6,9 @@
         width: 100%;
         margin: 0;
     }
+    .collumn {
+        width: auto;
+    }
 }
 #todays-weather {
     border-radius: 20px;
