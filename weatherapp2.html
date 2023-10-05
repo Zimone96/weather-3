@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Weather</title>
+    <!-- UIkit CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/css/uikit.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster+Two:ital@1&family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div
+      id="weatheApp"
+        class="card weatherApp"
+        style="
+          background-image: url(Images/pexels-johannes-plenio-1423600.jpg);
+          background-size: cover;
+          border-radius: 80px;
+          box-shadow: 0 0 10px #cde745;
+        "
+      >         <!-- search city -->
+        <div class="card-body">
+ 
+          <span class="search-goodies"
+            ><form id= city-holder>
+              <input
+                class="search-bar"
+                type="search"
+                placeholder="Enter your City"
+                id="citySearch"
+              />
+              <input class="search-button" type="submit" value="🔍" />
+              <button class="search-loc">  📍</button></form
+              ></span>
+          <!-- end of search city -->
+          <!--  -->
+          <!-- todays weather -->
+          <div class="card col-6" id="todays-weather">
+            <div class="card-body">
+              <h1>Saturday 23 Sep 2023</h1>
+              <p
+                class="todays-stats"
+                style="font-size: 15px; font-weight: bold;"
+              >
+                Precipitation: 100% <br />
+                Humidity: 90% <br />
+                Wind: 21 km/h
+              </p>
+              <div
+                <p class="todays-weather-icon" style="text-align: center;">
+                  <i
+                  id="icon"
+                    class="fa-solid fa-sun fa-beat"
+                    style="color: #f7ef79; font-size: 100px;"
+                  >
+                    <br />
+                  </i>
+                </p>
+                <p
+                  class="todays-temp"
+                  style="
+                    font-size: 30px;
+                    text-align: center;
+                    font-family: 'Bebas Neue', sans-serif;
+                  "
+                >
+                  <a id= "temp" href="#" > 19°C </a>
+                </p>
+                <p
+                  class="convert-text"
+                  style="
+                    font-size: 25px;
+                    text-align: center;
+                    font-family: 'Bebas Neue', sans-serif;
+                  "
+                >
+              -*-*-> Windy <-*-*-
+                </p></div>
+            </div>
+          </div>
+          <!-- end of todays weather -->
+          <!-- sun-thu forecast -->
+          <br />
+          <div class="container weekly-forecast uk-column-1-5">
+            <div>
+              <p class="sun">
+                Sunday<br />
+                18°|17°<i class="fa-solid fa-droplet"></i>
+              </p>
+            </div>
+            <div>
+              <p class="mon">
+                Monday<br />
+                23°|14°<i class="fa-solid fa-droplet"></i>
+              </p>
+            </div>
+            <div>
+              <p class="tues">
+                Tuesday<br />
+                18°|13°<i class="fa-solid fa-droplet"></i>
+              </p>
+            </div>
+            <div>
+              <p class="wed">
+                Wednesday<br />
+                19°|13°<i class="fa-solid fa-droplet"></i>
+              </p>
+            </div>
+            <div>
+              <p class="thu">
+                Thursday<br />
+                22°|14°<i class="fa-solid fa-cloud-sun-rain"></i>
+              </p>
+              <!-- end of forecast -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/c5635774f7.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="index.js"></script>
+  </body>
+</html>
