@@ -18,6 +18,10 @@ function showTemp(response) {
 
   let tempDisplay = document.querySelector("a");
   tempDisplay.innerHTML = `${temp} °C`;
+  let celsius = `${temp}`;
+  let fah =document.querySelector("#farenheit");
+  let fahrenheit = Math.round(celsius * 9/5) + 32;
+  fah.innerHTML = `${fahrenheit}°F`;
 
   let description = document.querySelector(".convert-text");
   let realDescription = response.data.condition.description;
@@ -62,6 +66,10 @@ function showTemp2(response) {
 
   let tempDisplay = document.querySelector("a");
   tempDisplay.innerHTML = `${temp} °C`;
+  let celsius = `${temp}`;
+  let fah =document.querySelector("#farenheit");
+  let fahrenheit = Math.round(celsius * 9/5) + 32;
+  fah.innerHTML = `${fahrenheit}°F`;
 
   let description = document.querySelector(".convert-text");
   let realDescription = response.data.condition.description;
@@ -101,3 +109,5 @@ function getCurrentLocation(event) {
 
 let searchLoc = document.querySelector(".search-loc");
 searchLoc.addEventListener("click", getCurrentLocation);
+
+
