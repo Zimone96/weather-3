@@ -11,8 +11,8 @@ let h1 = document.querySelector("h1");
 h1.innerHTML = `East-London ${fullTime}`;
 
 function showTemp(response) {
-  let temp = Math.round(response.data.main.temp);
-  let name = response.data.name;
+  let temp = Math.round(response.data.temperature.current);
+  let name = response.data.city;
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${name} ${fullTime}`;
 
@@ -20,21 +20,32 @@ function showTemp(response) {
   tempDisplay.innerHTML = `${temp} °C`;
 
   let description = document.querySelector(".convert-text");
-  let realDescription = response.data.weather[0].description;
+  let realDescription = response.data.condition.description;
   description.innerHTML = `-*-*-> ${realDescription} <-*-*-`;
 
   let iconChange = document.querySelector("i");
-  let weatherIcon = response.data.weather[0].icon;
-  let weatherIconHtml = `<img src=https://openweathermap.org/img/wn/${weatherIcon}@2x.png>`;
+  let weatherIcon = response.data.condition.icon;
+  
+  let weatherIconHtml = `<img src=http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${weatherIcon}.png>`;
   iconChange.innerHTML = `${weatherIconHtml}`;
+
+  let humidity =document.querySelector(".humid");
+  let currentHumid = Math.round(response.data.temperature.humidity);
+  humidity.innerHTML= `Humidity : ${currentHumid} %`;
+
+  let wind =document.querySelector(".wind");
+  let currentWind = Math.round(response.data.wind.speed);
+  wind.innerHTML= `Wind speed : ${currentWind} km/h`;
+
+  
 }
 
 function searchCity(event) {
   event.preventDefault();
   let citySearch = document.querySelector("#citySearch");
   let city = citySearch.value;
-  let apiKey = "597c40c39084687093b091cd48b366f8";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiKey = "eb49o06628a7b734b67c2eb60f4d3btf";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemp);
 }
 
@@ -44,8 +55,8 @@ form.addEventListener("submit", searchCity);
 //🙀Bonus Feature
 
 function showTemp2(response) {
-  let temp = Math.round(response.data.main.temp);
-  let name = response.data.name;
+  let temp = Math.round(response.data.temperature.current);
+  let name = response.data.city;
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${name} ${fullTime}`;
 
@@ -53,23 +64,33 @@ function showTemp2(response) {
   tempDisplay.innerHTML = `${temp} °C`;
 
   let description = document.querySelector(".convert-text");
-  let realDescription = response.data.weather[0].description;
+  let realDescription = response.data.condition.description;
   description.innerHTML = `-*-*-> ${realDescription} <-*-*-`;
 
   let iconChange = document.querySelector("i");
+  let weatherIcon = response.data.condition.icon;
   
-  let weatherIcon = response.data.weather[0].icon;
-  let weatherIconHtml = `<img src=https://openweathermap.org/img/wn/${weatherIcon}@2x.png>`;
+  let weatherIconHtml = `<img src=http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${weatherIcon}.png>`;
   iconChange.innerHTML = `${weatherIconHtml}`;
+
+  let humidity =document.querySelector(".humid");
+  let currentHumid = Math.round(response.data.temperature.humidity);
+  humidity.innerHTML= `Humidity : ${currentHumid} %`;
+
+  let wind =document.querySelector(".wind");
+  let currentWind = Math.round(response.data.wind.speed);
+  wind.innerHTML= `Wind speed : ${currentWind} km/h`;
+
+  console.log(weatherIconHtml)
 }
 
 function showPosition(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
   let units = "metric";
-  let apiKey = "445905dadb3d2b0c6f1b916c9d0e3860";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${units}&appid=${apiKey}`;
-  console.log(apiUrl);
+  let apiKey = "eb49o06628a7b734b67c2eb60f4d3btf";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&units=${units}&key=${apiKey}`;
+  
   axios.get(apiUrl).then(showTemp2);
 }
 
