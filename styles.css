@@ -1,3 +1,29 @@
+
+@media only screen and (min-width: 992px) {
+    body {
+        font-size: 16px;
+        width: 80%;
+        margin: auto;
+    }
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    body {
+        font-size: 14px;
+        width: 90%;
+        margin: auto;
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    body {
+        font-size: 12px;
+        width: 100%;
+        margin: 0;
+    }
+}
 #todays-weather {
     border-radius: 20px;
     box-shadow: 0 0 10px #cde745;
