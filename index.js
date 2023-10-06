@@ -11,28 +11,29 @@ let h1 = document.querySelector("h1");
 h1.innerHTML = `East-London ${fullTime}`;
 
 function showTemp(response) {
+  //temp display
   let temp = Math.round(response.data.temperature.current);
   let name = response.data.city;
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${name} ${fullTime}`;
-
   let tempDisplay = document.querySelector("a");
   tempDisplay.innerHTML = `${temp} °C`;
+  //celcius to farenheit
   let celsius = `${temp}`;
   let fah =document.querySelector("#farenheit");
   let fahrenheit = Math.round(celsius * 9/5) + 32;
   fah.innerHTML = `${fahrenheit}°F`;
-
+  //description
   let description = document.querySelector(".convert-text");
   let realDescription = response.data.condition.description;
   description.innerHTML = `-*-*-> ${realDescription} <-*-*-`;
-
+  //weather icon
   let iconChange = document.querySelector("i");
   let weatherIcon = response.data.condition.icon;
   
   let weatherIconHtml = `<img src=http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${weatherIcon}.png>`;
   iconChange.innerHTML = `${weatherIconHtml}`;
-
+  //humidity, wind.
   let humidity =document.querySelector(".humid");
   let currentHumid = Math.round(response.data.temperature.humidity);
   humidity.innerHTML= `Humidity : ${currentHumid} %`;
@@ -59,28 +60,29 @@ form.addEventListener("submit", searchCity);
 //🙀Bonus Feature
 
 function showTemp2(response) {
+  //temp display
   let temp = Math.round(response.data.temperature.current);
   let name = response.data.city;
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${name} ${fullTime}`;
-
   let tempDisplay = document.querySelector("a");
   tempDisplay.innerHTML = `${temp} °C`;
+  //cel to fa
   let celsius = `${temp}`;
   let fah =document.querySelector("#farenheit");
   let fahrenheit = Math.round(celsius * 9/5) + 32;
   fah.innerHTML = `${fahrenheit}°F`;
-
+  //descriptions
   let description = document.querySelector(".convert-text");
   let realDescription = response.data.condition.description;
   description.innerHTML = `-*-*-> ${realDescription} <-*-*-`;
-
+  //weather icons
   let iconChange = document.querySelector("i");
   let weatherIcon = response.data.condition.icon;
   
   let weatherIconHtml = `<img src=http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${weatherIcon}.png>`;
   iconChange.innerHTML = `${weatherIconHtml}`;
-
+  //humidity, wind
   let humidity =document.querySelector(".humid");
   let currentHumid = Math.round(response.data.temperature.humidity);
   humidity.innerHTML= `Humidity : ${currentHumid} %`;
