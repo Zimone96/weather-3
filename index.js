@@ -10,6 +10,37 @@ let fullTime = `${day} ${hour}:${min}`;
 let h1 = document.querySelector("h1");
 h1.innerHTML = `East-London ${fullTime}`;
 
+
+function displayForecast(response){
+  console.log(response.data);
+  let forecastElement= document.querySelector("#weeklyForecast");
+  let forecastHtml =`<div class="row">`;
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]
+  days.forEach(function(day){
+     forecastHtml= forecastHtml + `
+  <div class= "col-2">
+              <div>
+              <p class="sun">
+                ${day}<br />
+                18°|17°<i class="fa-solid fa-droplet"></i>
+              </p>
+            </div>
+  </div>`;
+  });
+  
+  forecastHtml = forecastHtml + `</div>`;
+  forecastElement.innerHTML= forecastHtml;
+}
+
+function getForecast(coordinates){
+
+let apiKey = "eb49o06628a7b734b67c2eb60f4d3btf";
+
+let apiUrl =`https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`
+console.log(apiUrl);
+axios.get(apiUrl).then(displayForecast);
+}
+
 function showTemp(response) {
   //temp display
   let temp = Math.round(response.data.temperature.current);
@@ -42,7 +73,8 @@ function showTemp(response) {
   let currentWind = Math.round(response.data.wind.speed);
   wind.innerHTML= `Wind speed : ${currentWind} km/h`;
 
-  
+  getForecast(response.data.coordinates);
+
 }
 
 function searchCity(event) {
@@ -91,7 +123,7 @@ function showTemp2(response) {
   let currentWind = Math.round(response.data.wind.speed);
   wind.innerHTML= `Wind speed : ${currentWind} km/h`;
 
-  console.log(weatherIconHtml)
+  console.log(response)
 }
 
 function showPosition(position) {
@@ -111,5 +143,3 @@ function getCurrentLocation(event) {
 
 let searchLoc = document.querySelector(".search-loc");
 searchLoc.addEventListener("click", getCurrentLocation);
-
-
