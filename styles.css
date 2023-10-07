@@ -1,4 +1,7 @@
+.sun {
+    font-size: 20px;
 
+}
 
 
 #todays-weather {
@@ -55,12 +58,13 @@
 .tues,
 .wed,
 .thu {
-    font-size: 25px;
+    font-size: 20px;
     box-shadow: 0 0 10px #cde745;
     border-radius: 30px;
-    padding: 30px 30px 30px 30px;
     background-color: white;
     font-family: "Bebas Neue", sans-serif;
+    text-align: center;
+    
 }
 
 .fa-droplet {

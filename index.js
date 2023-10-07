@@ -10,22 +10,34 @@ let fullTime = `${day} ${hour}:${min}`;
 let h1 = document.querySelector("h1");
 h1.innerHTML = `East-London ${fullTime}`;
 
+function formatDay(timestamp){
+let date = new Date(timestamp * 1000);
+let day = date.getDay();
+let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+return days[day];
+}
+
 
 function displayForecast(response){
-  console.log(response.data);
-  let forecastElement= document.querySelector("#weeklyForecast");
+  let forecast = response.data.daily;
+  let forecastElement= document.querySelector("#weekly-forecast");
   let forecastHtml =`<div class="row">`;
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]
-  days.forEach(function(day){
+  
+  forecast.forEach(function(forecastDay, index ){
+    if (index < 6 ) {
      forecastHtml= forecastHtml + `
   <div class= "col-2">
               <div>
               <p class="sun">
-                ${day}<br />
-                18°|17°<i class="fa-solid fa-droplet"></i>
+                ${formatDay(forecastDay.time)}<br />
+             <strong>   ${Math.round(forecastDay.temperature.maximum)}°C </strong>| ${Math.round(forecastDay.temperature.minimum)}°C 
+                <img
+          src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${forecastDay.condition.icon}.png"
+        />
               </p>
             </div>
-  </div>`;
+  </div>`;}
   });
   
   forecastHtml = forecastHtml + `</div>`;
@@ -91,6 +103,49 @@ form.addEventListener("submit", searchCity);
 
 //🙀Bonus Feature
 
+function formatDay2(timestamp){
+let date = new Date(timestamp * 1000);
+let day = date.getDay();
+let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+return days[day];
+}
+
+
+function displayForecast2(response){
+  let forecast = response.data.daily;
+  let forecastElement= document.querySelector("#weekly-forecast");
+  let forecastHtml =`<div class="row">`;
+  
+  forecast.forEach(function(forecastDay, index ){
+    if (index < 6 ) {
+     forecastHtml= forecastHtml + `
+  <div class= "col-2">
+              <div>
+              <p class="sun">
+                ${formatDay(forecastDay.time)}<br />
+             <strong>   ${Math.round(forecastDay.temperature.maximum)}°C </strong>| ${Math.round(forecastDay.temperature.minimum)}°C 
+                <img
+          src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${forecastDay.condition.icon}.png"
+        />
+              </p>
+            </div>
+  </div>`;}
+  });
+  
+  forecastHtml = forecastHtml + `</div>`;
+  forecastElement.innerHTML= forecastHtml;
+}
+
+function getForecast2(coordinates){
+
+let apiKey = "eb49o06628a7b734b67c2eb60f4d3btf";
+
+let apiUrl =`https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`
+console.log(apiUrl);
+axios.get(apiUrl).then(displayForecast2);
+}
+
 function showTemp2(response) {
   //temp display
   let temp = Math.round(response.data.temperature.current);
@@ -123,7 +178,7 @@ function showTemp2(response) {
   let currentWind = Math.round(response.data.wind.speed);
   wind.innerHTML= `Wind speed : ${currentWind} km/h`;
 
-  console.log(response)
+  getForecast2(response.data.coordinates);
 }
 
 function showPosition(position) {
@@ -143,3 +198,5 @@ function getCurrentLocation(event) {
 
 let searchLoc = document.querySelector(".search-loc");
 searchLoc.addEventListener("click", getCurrentLocation);
+
+
