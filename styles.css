@@ -93,6 +93,10 @@ h1 {
     margin: 0, auto;
     position: absolute;
   right: 90px;
-    bottom: 0;
-    color: white;
+    top: 15px;
+    color: black;
+    border: solid 2px white;
+    padding: 5px;
+    border-radius: 20px;
+    background-color: #E8FFDA;
 }
